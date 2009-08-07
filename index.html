@@ -55,14 +55,31 @@
     </div>
     <div class="example">
 <pre>$ irb -r "lib/peddler"
->> Peddler::Transport.username = "seller@example.com"
-=> "seller"
->> Peddler::Transport.password = "secret"
-=> "secret"
->> Peddler::Transport.region = "uk"
-=> "uk"
->> Peddler::Inventory::Queue.size
-=> 3</pre>
+>> @client = Peddler::Client.new :username => "john@example.com", :password => "secret", :region => "us"
+=> #<Peddler::Client:0x1155bfc @transport=...
+>> @client.inventory_queue_count
+=> 0
+>> batch = @client.new_inventory_batch
+=> #<Peddler::Inventory::Batch:0x1147f5c @...
+>> batch.id
+=> nil
+>> item = Peddler::Inventory::Item.new :product_id => "1234567890", :price => 100.00, :sku => "FOO-SKU", :quantity => 10
+=> #<Peddler::Inventory::Item:0x1140694 @q...
+>> batch << item
+=> [#<Peddler::Inventory::Item:0x1140694 @...
+>> batch.upload
+=> true
+>> batch.id
+=> "2587134052"
+>> latest_batches = @client.latest_inventory_uploads :count => 1
+=> [#<Peddler::Inventory::BatchStatus batch_id="2587104060", status="In Progress">]
+>> last_batch = last_batches[0]
+=> #<Peddler::Inventory::BatchStatus batch...
+>> last_batch.status
+=> "In Progress"
+>> report = @client.new_report :upload, 2587104060
+=> #<Peddler::Reports::Report:0x112da58 @n...
+</pre>
     </div>
 
     <h2>Contact</h2>
