@@ -49,34 +49,34 @@
       
     <h1><a href="http://github.com/snl/peddler">peddler</a></h1>
 
-    <div class="description">
+    <p class="description">
       <img id="peddler" src="images/peddler.png" alt="peddler" /><br />
       Peddler is a Ruby wrapper to the Amazon Inventory Management API.
-    </div>
-    <div class="example">
+    </p>
 <pre>$ irb -r "lib/peddler"
-&gt;&gt; @client = Peddler::Client.new
-&gt;&gt; @client.username = &quot;john@example.com&quot;
-&gt;&gt; @client.password = &quot;secret&quot;
-&gt;&gt; @client.region = &quot;us&quot;
+&gt;&gt; @client = Peddler::Client.new :username => &quot;foo@bar.com&quot;,
+?&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:password => &quot;secret&quot;,
+?&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:region => &quot;us&quot;
 &gt;&gt; batch = @client.new_inventory_batch
-&gt;&gt; item = Peddler::Inventory::Item.new
-&gt;&gt; item.product_id = &quot;1234567890&quot;
-&gt;&gt; item.price = 100.00
-&gt;&gt; item.sku = &quot;FOO-SKU&quot;
-&gt;&gt; item.quantity = 10
+&gt;&gt; item = @client.new_inventory_item :product_id => &quot;1234567890&quot;,
+?&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:price => 100.00,
+?&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:item.price => 100.00,
+?&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:item.sku => &quot;SKU-123&quot;,
+?&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:item.quantity => 10
 &gt;&gt; batch &lt;&lt; item
 &gt;&gt; batch.upload
 =&gt; true
 &gt;&gt; batch.id
-=&gt; &quot;2587134052&quot;
-&gt;&gt; report = @client.new_report :upload, 2587104060
-&gt;&gt; report.response
-=&gt; &quot;Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNum...</pre>
-    </div>
+=&gt; &quot;9876543210&quot;
+&gt;&gt; @client.inventory_queue_count
+=&gt; 1
+&gt;&gt; sleep(60)
+=> 60
+&gt;&gt; upload_log = @client.latest_inventory_uploads :count =&gt; 1
+=&gt; [#&gt;Peddler::Inventory::BatchStatus items_activated=&quot;1&quot;, batch_id=&quot;9876543...</pre>
 
     <h2>Contact</h2>
-	<p><a href="http://twitter.com/delescluze">snl</a><br/></p>
+	<p><a href="http://twitter.com/delescluze">Hakan Şenol Ensari</a><br/></p>
 
     <h2>Download</h2>
     <p>
