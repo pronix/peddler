@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Peddler::Reports::UnshippedOrdersReport)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/peddler/reports.rb, line 13</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">transport</span>, <span class="ruby-identifier">params</span>={})
+        <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">transport</span>)
+        <span class="ruby-ivar">@mapped_params</span> = {
+          <span class="ruby-value str">&quot;ReportID&quot;</span>                  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;id&quot;</span>,
+          <span class="ruby-value str">&quot;StartDate&quot;</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;starts_at&quot;</span>,
+          <span class="ruby-value str">&quot;EndDate&quot;</span>                   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;ends_at&quot;</span>,
+          <span class="ruby-value str">&quot;DownloadType&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;type&quot;</span>,
+          <span class="ruby-value str">&quot;Scheduled&quot;</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;scheduled&quot;</span>,
+          <span class="ruby-value str">&quot;ReportStatus&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;status&quot;</span>,
+          <span class="ruby-value str">&quot;SubmittedDate&quot;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;submitted_at&quot;</span>,
+          <span class="ruby-value str">&quot;StartedProcessingDate&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;started_processing_at&quot;</span>,
+          <span class="ruby-value str">&quot;CompletedProcessingDate&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;completed_processing_at&quot;</span>,
+          <span class="ruby-value str">&quot;CompletedProcesssingDate&quot;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;completed_processing_at&quot;</span>}
+        <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each_pair</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span> <span class="ruby-node">&quot;#{key}=&quot;</span>, <span class="ruby-identifier">value</span> }
+        <span class="ruby-ivar">@starts_at</span> <span class="ruby-operator">||=</span> (<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span> <span class="ruby-operator">-</span> <span class="ruby-value">7</span>).<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%Y-%m-%dT00:00:00-00:00&quot;</span>)
+        <span class="ruby-ivar">@ends_at</span> <span class="ruby-operator">||=</span> (<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%Y-%m-%dT00:00:00-00:00&quot;</span>)
+        <span class="ruby-comment cmt">#@type ||= &quot;_GET_CONVERGED_FLAT_FILE_ACTIONABLE_ORDER_DATA_&quot;</span>
+        <span class="ruby-ivar">@type</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;_GET_FLAT_FILE_ACTIONABLE_ORDER_DATA_&quot;</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@id</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">generate_report</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
