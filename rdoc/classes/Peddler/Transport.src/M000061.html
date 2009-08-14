@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/peddler/transport.rb, line 129</span>
+  <pre><span class="ruby-comment cmt"># File lib/peddler/transport.rb, line 130</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url_encode</span>(<span class="ruby-identifier">value</span>)
       <span class="ruby-identifier">require</span> <span class="ruby-value str">'cgi'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">CGI</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">CGI</span><span class="ruby-operator">::</span><span class="ruby-identifier">escape</span>)
       <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>)

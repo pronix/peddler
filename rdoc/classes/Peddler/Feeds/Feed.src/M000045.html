@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/peddler/feeds.rb, line 77</span>
+  <pre><span class="ruby-comment cmt"># File lib/peddler/feeds.rb, line 74</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upload</span>
         <span class="ruby-identifier">raise</span> <span class="ruby-constant">PeddlerError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;Batch already uploaded&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@id</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-ivar">@transport</span>.<span class="ruby-identifier">modernize_request</span>
