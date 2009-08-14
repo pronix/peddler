@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Peddler::Client</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Peddler::Client</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/peddler/client_rb.html">
+                lib/peddler/client.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This is the public interface of the <a href="../Peddler.html">Peddler</a>
+library.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000076">generate_report</a>&nbsp;&nbsp;
+      <a href="#M000068">inventory_queue</a>&nbsp;&nbsp;
+      <a href="#M000078">latest_reports</a>&nbsp;&nbsp;
+      <a href="#M000062">new</a>&nbsp;&nbsp;
+      <a href="#M000072">new_cancelled_order</a>&nbsp;&nbsp;
+      <a href="#M000070">new_fulfilled_order</a>&nbsp;&nbsp;
+      <a href="#M000066">new_inventory_batch</a>&nbsp;&nbsp;
+      <a href="#M000067">new_inventory_item</a>&nbsp;&nbsp;
+      <a href="#M000071">new_order_cancellation_feed</a>&nbsp;&nbsp;
+      <a href="#M000069">new_order_fulfillment_feed</a>&nbsp;&nbsp;
+      <a href="#M000074">new_refund</a>&nbsp;&nbsp;
+      <a href="#M000073">new_refund_batch</a>&nbsp;&nbsp;
+      <a href="#M000075">new_report</a>&nbsp;&nbsp;
+      <a href="#M000077">new_unshipped_orders_report</a>&nbsp;&nbsp;
+      <a href="#M000064">password=</a>&nbsp;&nbsp;
+      <a href="#M000065">region=</a>&nbsp;&nbsp;
+      <a href="#M000063">username=</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000062.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000062.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a client instance.
+</p>
+<pre>
+  client = Peddler::Client.new :username =&gt; &quot;foo@bar.com&quot;,
+                               :password =&gt; &quot;secret&quot;,
+                               :region =&gt; &quot;us&quot;
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000076.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000076.html');return false;">
+          <span class="method-name">generate_report</span><span class="method-args">(name,params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Requests a report. Returns true when successful. Name works with the
+following values:
+</p>
+<p>
+[ :order, :open_listings, :open_listings_lite, :open_listings_liter ]
+</p>
+<p>
+Here&#8216;s some sample usage:
+</p>
+<pre>
+  client.generate_report :order, :number_of_days =&gt; 15
+
+  client.generate_report :open_listings
+</pre>
+<p>
+A word of caution. Open listings may crap up with larger inventories. I
+will have to migrate to a cURL-based HTTP client to get that working again.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000068.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000068.html');return false;">
+          <span class="method-name">inventory_queue</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns count of pending inventory uploads queued at Amazon.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000078.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000078.html');return false;">
+          <span class="method-name">latest_reports</span><span class="method-args">(name,params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns status of most recent reports. Optional &quot;count&quot; defaults
+to 10. Name works with the following values:
+</p>
+<p>
+[ :upload, :order, :batch_refund, :open_listings, :open_listings_lite,
+:open_listings_liter ]
+</p>
+<p>
+Some sample usage:
+</p>
+<pre>
+  reports = client.latest_reports :order, :count =&gt; 1
+  reports[0]
+  =&gt; #&lt;Peddler::LegacyReports::ReportStatus starts_at=&quot;07-29-2009:10-00-06&quot; ...
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000072.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000072.html');return false;">
+          <span class="method-name">new_cancelled_order</span><span class="method-args">(params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an item that can then be added to an order cancellation feed. Keys
+are lowercased and underscored but otherwise the same as Amazon&#8216;s
+headers. See section 7.4 in the API docs.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000070.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000070.html');return false;">
+          <span class="method-name">new_fulfilled_order</span><span class="method-args">(params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an item that can then be added to an order fulfillment feed. Keys
+are lowercased and underscored but otherwise the same as Amazon&#8216;s
+headers. See section 7.1 in the API docs.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000066.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000066.html');return false;">
+          <span class="method-name">new_inventory_batch</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an inventory batch.
+</p>
+<p>
+A sample workflow:
+</p>
+<pre>
+  batch = client.new_inventory_batch
+  book = new_inventory_item :product_id =&gt; &quot;1234567890&quot;,
+                            :sku        =&gt; &quot;SKU-001&quot;,
+                            :price      =&gt; 10.00,
+                            :quantity   =&gt; 1
+  batch &lt;&lt; book
+  batch.upload
+</pre>
+<p>
+The batch should now have an upload id assigned to it by Amazon. Once
+processed, you can use this to check the error log:
+</p>
+<pre>
+   report = client.new_report :upload, :id =&gt; batch.id
+   report.body
+</pre>
+<p>
+That should output something like the following, assuming everything went
+well with the upload:
+</p>
+<pre>
+   &quot;Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber of records successful\t\t1\n\n&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000067.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000067.html');return false;">
+          <span class="method-name">new_inventory_item</span><span class="method-args">(params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an inventory item. Parameter keys are lowercased and underscored
+but otherwise the same as Amazon&#8216;s colum titles in their
+tab-delimited templates.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000071.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000071.html');return false;">
+          <span class="method-name">new_order_cancellation_feed</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an order cancellation batch.
+</p>
+<p>
+A sample workflow:
+</p>
+<pre>
+  feed = client.new_order_cancellation_feed
+  cancelled_order = new_fulfilled_order :order_id    =&gt; &quot;123-1234567-1234567&quot;
+  feed &lt;&lt; cancelled_order
+  feed.upload
+  feed.status
+  =&gt; &quot;_SUBMITTED_&quot;
+</pre>
+<p>
+Now, refresh the status until you see:
+</p>
+<pre>
+  report.status!
+  =&gt; &quot;_DONE_&quot;
+</pre>
+<p>
+Finally, check the processing report:
+</p>
+<pre>
+  report.download.to_s
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000069.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000069.html');return false;">
+          <span class="method-name">new_order_fulfillment_feed</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an order fulfillment batch.
+</p>
+<p>
+A sample workflow:
+</p>
+<pre>
+  feed = client.new_order_fulfillment_feed
+  fulfilled_order = new_fulfilled_order :order_id    =&gt; &quot;123-1234567-1234567&quot;,
+                                        :order_date  =&gt; &quot;2009-08-01&quot;
+  feed &lt;&lt; fulfilled_order
+  feed.upload
+  feed.status
+  =&gt; &quot;_SUBMITTED_&quot;
+</pre>
+<p>
+Now, refresh the status until you see:
+</p>
+<pre>
+  report.status!
+  =&gt; &quot;_DONE_&quot;
+</pre>
+<p>
+Finally, check the processing report:
+</p>
+<pre>
+  report.download.to_s
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000074.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000074.html');return false;">
+          <span class="method-name">new_refund</span><span class="method-args">(params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a refund item that can then be added to a refund batch.
+</p>
+<p>
+Reasons can be [ &quot;GeneralAdjustment&quot; &quot;CouldNotShip&quot;
+&quot;DifferentItem&quot; &quot;MerchandiseNotReceived&quot;
+&quot;MerchandiseNotAsDescribed&quot; ].
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000073.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000073.html');return false;">
+          <span class="method-name">new_refund_batch</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a refund batch.
+</p>
+<pre>
+  batch = client.new_refund_batch
+  refund = client.new_refund :order_id                 =&gt; &quot;123-1234567-1234567&quot;,
+                             :payments_transaction_id  =&gt; &quot;12341234567890&quot;,
+                             :refund_amount            =&gt; 10.00,
+                             :reason                   =&gt; &quot;CouldNotShip&quot;,
+                             :message                  =&gt; &quot;With our apologies.&quot;
+  batch &lt;&lt; refund
+  batch.upload
+</pre>
+<p>
+To follow up on the status of the upload a little while afterwards:
+</p>
+<pre>
+  status = client.latest_reports :batch_refund, :count =&gt; 1
+  report = client.new_report :batch_refund, :id =&gt; status[0].id
+</pre>
+<p>
+Assuming the refund was successfully processed, report.body should now
+output:
+</p>
+<pre>
+  &quot;123-1234567-1234567order-item-id: 12341234567890\tSUCCESS 10.00 is Refunded.\r\n&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000075.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000075.html');return false;">
+          <span class="method-name">new_report</span><span class="method-args">(name,params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <pre>
+ Creates an instance for an already-generated report. Works only with what I call legacy reports, that is,
+ anything that comes before section 7 in the API docs.
+</pre>
+<p>
+ Report names can be [ :upload, :order, :preorder, :batch_refund,
+:open_listings, :open_listings_lite, :open_listings_liter ].
+</p>
+<pre>
+ You can download a specific report by using its ID. Otherwise, the instance will fetch the latest available report. One
+ oddball exception: upload reports do require an ID and will return nil if you don't provide one.
+
+   orders_report = client.new_report :order
+   orders = Peddler::Handlers::TabDelimitedHandler.decode_response(orders_report.body)
+   orders[0].buyer_name
+   =&gt; &quot;John Doe&quot;
+
+   preorders_report = client.new_report :preorder, :product_line =&gt; &quot;Books&quot;, :frequency =&gt; 2
+   preorders = Peddler::Handlers::TabDelimitedHandler.decode_response(preorders_report.body)
+   preorders[0].average_asking_price
+   =&gt; &quot;100&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000077.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000077.html');return false;">
+          <span class="method-name">new_unshipped_orders_report</span><span class="method-args">(params={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an unshipped order report. Takes on some optional parameters, such
+as :id, :starts_at, :ends_at. By default, it will request a <a
+href="Client.html#M000062">new</a> unshipped order report for the past
+seven days.
+</p>
+<pre>
+  report = client.new_unshipped_order_report
+  report.status
+  =&gt; &quot;_SUBMITTED_&quot;
+</pre>
+<p>
+Now, refresh the status until you see:
+</p>
+<pre>
+  report.status!
+  =&gt; &quot;_DONE_&quot;
+</pre>
+<p>
+Once done, you&#8216;ll get a nifty array of unshipped orders:
+</p>
+<pre>
+  report.unshipped_orders
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000064.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000064.html');return false;">
+          <span class="method-name">password=</span><span class="method-args">(password)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000065.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000065.html');return false;">
+          <span class="method-name">region=</span><span class="method-args">(region)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets Amazon region. Works with [ &quot;us&quot;, &quot;uk&quot;,
+&quot;de&quot;, &quot;ca&quot;, &quot;fr&quot;, &quot;jp&quot; ].
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="Client.src/M000063.html" target="Code" class="method-signature"
+            onclick="popupCode('Client.src/M000063.html');return false;">
+          <span class="method-name">username=</span><span class="method-args">(username)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
