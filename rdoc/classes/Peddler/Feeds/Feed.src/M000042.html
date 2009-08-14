@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Peddler::Feeds::Feed)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/peddler/feeds.rb, line 44</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">transport</span>)
+        <span class="ruby-ivar">@transport</span> = <span class="ruby-identifier">transport</span>
+        <span class="ruby-ivar">@batch</span> = []
+        <span class="ruby-ivar">@mapped_params</span> = {
+          <span class="ruby-value str">&quot;UploadStatus&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;status&quot;</span>,
+          <span class="ruby-value str">&quot;UploadType&quot;</span>                =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;type&quot;</span>,
+          <span class="ruby-value str">&quot;UploadId&quot;</span>                  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;id&quot;</span>,
+          <span class="ruby-value str">&quot;SubmittedDate&quot;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;submitted_at&quot;</span>,
+          <span class="ruby-value str">&quot;StartedProcessingDate&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;started_processing_at&quot;</span>,
+          <span class="ruby-value str">&quot;CompletedProcessingDate&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;completed_processing_at&quot;</span>,
+          <span class="ruby-value str">&quot;CompletedProcesssingDate&quot;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;completed_processing_at&quot;</span>,
+          <span class="ruby-value str">&quot;MessagesProcessed&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;messages_processed&quot;</span>,
+          <span class="ruby-value str">&quot;MessagesSuccessful&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;messages_successful&quot;</span>,
+          <span class="ruby-value str">&quot;MessagesWithErrors&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;messages_with_errors&quot;</span>,
+          <span class="ruby-value str">&quot;MessagesWithWarnings&quot;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;messages_with_warnings&quot;</span>}
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
