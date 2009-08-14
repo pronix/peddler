@@ -66,18 +66,9 @@
 ?&gt;   :quantity   => 10)
 &gt;&gt; batch &lt;&lt; item
 &gt;&gt; batch.upload
-&gt;&gt; batch.id
-=&gt; &quot;9876543210&quot;
 &gt;&gt; client.inventory_queue_count
-=&gt; 1
-&gt;&gt; sleep(60)
-&gt;&gt; log = client.latest_inventory_uploads(
-?&gt;   :count =&gt; 1)
-&gt;&gt; log.items_activated
-=&gt; 1
-&gt;&gt; log.batch_id
-=&gt; "9876543210"</pre>
-  <p>Read the RDoc documentation <a href="http://snl.github.com/peddler/src">here</a>.</p>
+=&gt; 1</pre>
+  <p>I have some more examples <a href="http://github.com/snl/peddler">here</a>. Run rdoc and check the source for more detailed info.</p>
     <h2>Download</h2>
     <p>
       You can download this project in either
