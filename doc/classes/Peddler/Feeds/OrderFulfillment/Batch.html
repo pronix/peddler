@@ -85,14 +85,6 @@
 This class contains methods to upload order fulfillment info to Amazon. See
 sections 7.1 through 7.3 in the API documentation for more detail.
 </p>
-<pre>
-  feed = client.new_order_fulfillment_feed
-  fulfilled_order = new_fulfilled_order :order_id    =&gt; &quot;123-1234567-1234567&quot;,
-                                        :order_date  =&gt; &quot;2009-08-01&quot;
-  feed &lt;&lt; fulfilled_order
-  feed.upload
-  p feed.download.to_s if feed.status! == &quot;_DONE_&quot;
-</pre>
 
     </div>
 
